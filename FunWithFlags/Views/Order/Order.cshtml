@@ -1,0 +1,63 @@
+﻿@model FunWithFlags.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "Your Order";
+}
+
+<h2>Your Order</h2>
+
+<table class="table">
+    <thead>
+        <tr class="orderline-header">
+            <th class="orderline-code">
+                @Html.DisplayNameFor(model => model.Order.OrderLines.First().Article.Code)
+            </th>
+            <th class="orderline-description">
+                @Html.DisplayNameFor(model => model.Order.OrderLines.First().Article.Description)
+            </th>
+            <th class="orderline-amount">
+                @Html.DisplayNameFor(model => model.Order.OrderLines.First().Amount)
+            </th>
+            <th class="orderline-price">
+                @Html.DisplayNameFor(model => model.Order.OrderLines.First().Price)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderLine in Model.Order.OrderLines)
+    {
+        <tr class="orderline">
+            <td class="orderline-code">
+                @Html.DisplayFor(modelItem => orderLine.Article.Code)
+            </td>
+            <td class="orderline-description">
+                @Html.DisplayFor(modelItem => orderLine.Article.Description)
+            </td>
+            <td class="orderline-amount">
+                @Html.DisplayFor(modelItem => orderLine.Amount)
+            </td>
+            <td class="orderline-price">
+                @Html.DisplayFor(modelItem => orderLine.Price)
+            </td>
+        </tr>
+}
+        <tr class="orderline-total">
+            <td class="orderline-code">@Html.DisplayNameFor(model => model.TotalPrice)</td>
+            <td class="orderline-description"></td>
+            <td class="orderline-amount"></td>
+            <td class="orderline-price">@Html.DisplayFor(model => model.TotalPrice)</td>
+        </tr>
+        <tr class="orderline-total">
+            <td class="orderline-code">@Html.DisplayNameFor(model => model.Postage)</td>
+            <td class="orderline-description"></td>
+            <td class="orderline-amount"></td>
+            <td class="orderline-price">@Html.DisplayFor(model => model.Postage)</td>
+        </tr>
+        <tr class="orderline-total">
+            <td class="orderline-code">@Html.DisplayNameFor(model => model.TotalPriceWithPostage)</td>
+            <td class="orderline-description"></td>
+            <td class="orderline-amount"></td>
+            <td class="orderline-price">@Html.DisplayFor(model => model.TotalPriceWithPostage)</td>
+        </tr>
+    </tbody>
+</table>
